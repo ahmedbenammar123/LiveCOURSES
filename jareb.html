@@ -1,0 +1,23 @@
+function sendAvis(id) {
+    
+    var myavis=document.getElementById("avissend").value;
+    var note=document.getElementById("notesend").value;
+    var avisTab = JSON.parse(localStorage.getItem("avis") || "[]" );
+    var connectedUserId=localStorage.getItem("connected");
+    var inscriptiontab=JSON.parse(localStorage.getItem("inscriptions")||"[]");
+    for (var i = 0; i < inscriptiontab.length; i++) {
+        if (inscriptiontab[i].id == id) {
+    
+    var avi  = {
+        id:generateId(avisTab)+1,
+        myavis:myavis,
+        note:note,
+        profId:connectedUserId,
+        StudentId:inscriptiontab[i].userId,
+       
+    }
+    avisTab.push(avi);
+        localStorage.setItem("avis", JSON.stringify(avisTab));
+        location.reload();
+        console.log(avi); }
+}}
